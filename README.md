@@ -160,10 +160,8 @@ En tu código:
 
 const API_KEY_GIPHY = "TU_API_KEY_AQUI";
 
-=============================================================================
-
 ##Link de repocitorio y page de GitHub:
 
-[E5M4](https://github.com/POLIVAF/E5M4.git)
+https://github.com/POLIVAF/E5M4.git
 
-[E5M4](https://polivaf.github.io/E5M4/)
+https://polivaf.github.io/E5M4/
