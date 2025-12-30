@@ -2,6 +2,7 @@
 const btnXHR = document.getElementById("cargar-xhr");
 const btnFetch = document.getElementById("cargar-fetch");
 const resultado = document.getElementById("resultado");
+//#endregion
 
 //#region XHR
 btnXHR.addEventListener("click", cargarUsuariosXHR);
@@ -53,11 +54,19 @@ function renderizarUsuarios(usuarios) {
 
   usuarios.forEach(usuario => {
     const li = document.createElement("li");
+    const avatarUrl = `https://i.pravatar.cc/100?img=${usuario.id}`;
+
     li.innerHTML = `
-      <h4>${usuario.name}</h4>
-      <p>Email: ${usuario.email}</p>
-      <p>Ciudad: ${usuario.address.city}</p>
+      <div class="usuario-card">
+        <img src="${avatarUrl}" alt="Foto de ${usuario.name}">
+        <div>
+          <h4>${usuario.name}</h4>
+          <p>Email: ${usuario.email}</p>
+          <p>Ciudad: ${usuario.address.city}</p>
+        </div>
+      </div>
     `;
+
     ul.appendChild(li);
   });
 
