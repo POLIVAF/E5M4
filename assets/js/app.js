@@ -1,10 +1,10 @@
-//#region Realizando Requests con XMLHttpRequest (El método clásico)
+//#region VARIABLES
 const btnXHR = document.getElementById("cargar-xhr");
+const btnFetch = document.getElementById("cargar-fetch");
 const resultado = document.getElementById("resultado");
 
-btnXHR.addEventListener("click", () => {
-  cargarUsuariosXHR();
-});
+//#region XHR
+btnXHR.addEventListener("click", cargarUsuariosXHR);
 
 function cargarUsuariosXHR() {
   const xhr = new XMLHttpRequest();
@@ -16,7 +16,7 @@ function cargarUsuariosXHR() {
       const usuarios = JSON.parse(this.responseText);
       renderizarUsuarios(usuarios);
     } else {
-      resultado.innerHTML = "<p>Error al cargar los datos</p>";
+      resultado.innerHTML = "<p>Error al cargar datos</p>";
     }
   };
 
@@ -26,7 +26,26 @@ function cargarUsuariosXHR() {
 
   xhr.send();
 }
+//#endregion
 
+//#region FETCH
+btnFetch.addEventListener("click", cargarUsuariosFetch);
+
+function cargarUsuariosFetch() {
+  fetch("https://jsonplaceholder.typicode.com/users")
+    .then(response => {
+      if (!response.ok) throw new Error("Error API");
+      return response.json();
+    })
+    .then(usuarios => renderizarUsuarios(usuarios))
+    .catch(error => {
+      console.error(error);
+      resultado.innerHTML = "<p>Error al cargar usuarios</p>";
+    });
+}
+//#endregion
+
+//#region RENDER (ÚNICA)
 function renderizarUsuarios(usuarios) {
   resultado.innerHTML = "";
 
@@ -34,13 +53,11 @@ function renderizarUsuarios(usuarios) {
 
   usuarios.forEach(usuario => {
     const li = document.createElement("li");
-
     li.innerHTML = `
       <h4>${usuario.name}</h4>
       <p>Email: ${usuario.email}</p>
       <p>Ciudad: ${usuario.address.city}</p>
     `;
-
     ul.appendChild(li);
   });
 
@@ -48,60 +65,16 @@ function renderizarUsuarios(usuarios) {
 }
 //#endregion
 
-//#region Fetch API (El método moderno)
-const btnFetch = document.getElementById("cargar-fetch");
 
-btnFetch.addEventListener("click", () => {
-  cargarUsuariosFetch();
-});
+//#region GIPHY
+const API_KEY_GIPHY = "aOpPIFu8JIV4EeV7H1NVlMtf9uKcPqD4";
 
-function cargarUsuariosFetch() {
-  fetch("https://jsonplaceholder.typicode.com/users")
-    .then(response => {
-      if (!response.ok) {
-        throw new Error("Error en la respuesta de la API");
-      }
-      return response.json();
-    })
-    .then(usuarios => {
-      // Se usa la MISMA función de renderizado
-      renderizarUsuarios(usuarios);
-    })
-    .catch(error => {
-      console.error("Error de red:", error);
-      resultado.innerHTML = "<p>Error al cargar los usuarios</p>";
-    });
-}
-
-function renderizarUsuarios(usuarios) {
-  // Limpiar contenido previo
-  resultado.innerHTML = "";
-
-  const ul = document.createElement("ul");
-
-  usuarios.forEach(usuario => {
-    const li = document.createElement("li");
-
-    li.innerHTML = `
-      <h4>${usuario.name}</h4>
-      <p>Email: ${usuario.email}</p>
-    `;
-
-    ul.appendChild(li);
-  });
-
-  resultado.appendChild(ul);
-}
-
-//#endregion
-
-//#region (Opcional - Bonus): Consumiendo una API con API Key
-const API_KEY_GIPHY = "TU_API_KEY_AQUI";
-
+// Elementos del DOM
 const inputGif = document.getElementById("gif-input");
 const btnBuscarGif = document.getElementById("buscar-gif");
 const resultadoGif = document.getElementById("resultado-gif");
 
+// Evento click del botón
 btnBuscarGif.addEventListener("click", () => {
   const terminoBusqueda = inputGif.value.trim();
 
@@ -113,6 +86,7 @@ btnBuscarGif.addEventListener("click", () => {
   buscarGif(terminoBusqueda);
 });
 
+// Función que consulta la API de Giphy
 function buscarGif(termino) {
   const url = `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY_GIPHY}&q=${termino}&limit=1`;
 
@@ -132,7 +106,7 @@ function buscarGif(termino) {
       const gifUrl = data.data[0].images.original.url;
 
       resultadoGif.innerHTML = `
-        <img src="${gifUrl}" alt="GIF encontrado" style="max-width:100%;">
+        <img src="${gifUrl}" alt="GIF encontrado" style="max-width:100%; border-radius:8px;">
       `;
     })
     .catch(error => {
@@ -140,4 +114,5 @@ function buscarGif(termino) {
       resultadoGif.innerHTML = "<p>Error al buscar el GIF</p>";
     });
 }
+
 //#endregion
