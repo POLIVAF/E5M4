@@ -1,0 +1,74 @@
+/* ===============================
+   no superpone al codigo css en el HTML
+   
+   =============================== */
+
+.api-ejercicio {
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #f9fafb;
+  border-radius: 8px;
+  font-family: Arial, sans-serif;
+}
+
+/* Botones */
+.api-ejercicio button {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  margin: 5px 5px 10px 0;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.api-ejercicio button:hover {
+  background-color: #1e40af;
+}
+
+/* Input GIF */
+.api-ejercicio input {
+  padding: 8px;
+  width: 60%;
+  max-width: 300px;
+  margin-right: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+/* Resultado usuarios */
+.api-ejercicio ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 15px;
+}
+
+.api-ejercicio li {
+  background-color: white;
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+}
+
+.api-ejercicio li h4 {
+  margin: 0 0 5px 0;
+  color: #1f2933;
+}
+
+.api-ejercicio li p {
+  margin: 0;
+  color: #4b5563;
+}
+
+/* Resultado GIF */
+#resultado-gif {
+  margin-top: 15px;
+}
+
+#resultado-gif img {
+  max-width: 100%;
+  border-radius: 8px;
+}
