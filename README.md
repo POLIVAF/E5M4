@@ -128,6 +128,42 @@ En el archivo app.js, reemplaza:
 const API_KEY_GIPHY = "TU_API_KEY_AQUI";
 
 por tu clave real obtenida en Giphy Developers.
+la pagina de https://developers.giphy.com/dashboard/ 
+
+Pasos para crear la cta e:
+Completar formulario
+
+1.-Rellena así (simple):
+
+2.-App Name:
+Proyecto API Fetch
+
+3.-App Description:
+Proyecto educativo
+
+4.-Elige "Website"
+
+5.-Acepta los términos y crea la app.
+
+6.-Copiar tu API Key
+
+Ahora verás algo como:
+
+API Key
+xxxxxxxxxxxxxxxxxxxxxxxx
+
+7.-Copia esa clave
+
+8.-Pegarla en tu JS
+
+En tu código:
+
+const API_KEY_GIPHY = "TU_API_KEY_AQUI";
 
 =============================================================================
 
+Link de repocitorio y page de GitHub:
+
+[E5M4] (https://github.com/POLIVAF/E5M4.git)
+
+[E5M4] (https://polivaf.github.io/E5M4/)
